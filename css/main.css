@@ -1,8 +1,16 @@
+.all {
+    display: flex;
+    background-color: #ffeae5;
+    width: 100%;
+    background-size: cover;
+}
+
 .contains {
     background-color: #ffeae5;
     width: 100%;
-    height: 1000px;
-    background-size: contain;
+    height: 100vh;
+    background-size: cover;
+    position: relative;
 }
 
 h1 {
@@ -116,7 +124,6 @@ p.p_date {
     color: purple;
     font-size: 20px;
     border: 2px dotted purple;
-    /* margin-right: px; */
     font-weight: bold;
     cursor: pointer;
 }
@@ -126,16 +133,48 @@ p.p_date {
     color: white;
 }
 
+
 .bigNote {
     width: 50%;
     height: 800px;
     margin-top: 73px;
-    z-index: 2;
     display: none;
+    flex-direction: column;
     border: 10px dotted white;
     border-radius: 16px;
     padding: 3px;
     margin-right: 20px;
+    background-color: #ffeae5;
+}
+
+@media (max-width:768px) {
+    .all {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .contains {
+        position: relative;
+    }
+
+    .bigNote {
+        position: absolute;
+        flex-direction: column;
+        height: 80vh;
+        top: 20px;
+        left: 5%;
+        right: 0;
+        display: none;
+        width: 90%;
+        border: 10px dotted white;
+        border-radius: 16px;
+        padding: 3px;
+        z-index: 9;
+        box-shadow: 0px 8px 8px #888888;
+        background-color: #c39a91;
+    }
+
 }
 
 .bigNote div.title {
