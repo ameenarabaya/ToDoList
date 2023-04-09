@@ -1,6 +1,7 @@
 
 let colors = ["aquamarine", "#ffde59", "#c9b8da", "#ff914d", "#AEC33A"];
-notes = []
+let notes = [
+]
 let taskname;
 //get the task from local storage
 function getTaskFromStroge() {
@@ -21,7 +22,7 @@ const addInnerTasks = (index) => {
     let indev2 = 0;
     for (let i = 0; i < notes[index].innerTasks.length; i++) {
         document.querySelector('.innerNotes').innerHTML += `
-   <h6 class='innertitle ${notes[index].innerTasks[i].click ? "done" : ""}'>${notes[index].innerTasks[i].title}
+   <h6 class='innertitle ${notes[index].innerTasks[i].click ? "done" : ""}' id="innertitle_${i}">${notes[index].innerTasks[i].title}
    <span onclick="editTask2(${index},${i})" class="material-symbols-outlined">
    edit_note
    </span>
@@ -56,8 +57,6 @@ const addtheTask = (i) => {
         `
     }
 }
-
-
 // add the small note outSide
 const addobjects = () => {
     document.getElementById('note').innerHTML = ``;
@@ -180,6 +179,7 @@ function media(x) {
 
 
 function deleteTask2(index, indev2) {
+    let dis = document.getElementById(`innertitle_${indev2}`);
     swal({
         title: `Are you sure to delete The task ?`,
         text: "To confirm,if you delete the task you will not be able to retrieve it",
@@ -189,10 +189,13 @@ function deleteTask2(index, indev2) {
     }).then((value) => {
         let isconferm = value;
         if (isconferm == true) {
-            notes[index].innerTasks.splice(indev2, 1);
-            addInnerTasks(index);
-            addobjects();
-            storeTasks();
+            dis.style.opacity = '30%'
+            setTimeout(() => {
+                notes[index].innerTasks.splice(indev2, 1);
+                addInnerTasks(index);
+                addobjects();
+                storeTasks();
+            }, 2000)
         }
     });
 
@@ -224,6 +227,7 @@ function editTask2(index, indev2) {
 
 function deletetask(indev) {
     let test = notes[indev]
+
     swal({
         title: `Are you sure to delete ${test.noteTitle} task ? `,
         text: "To confirm, if you delete the task you will not be able to retrieve it",
